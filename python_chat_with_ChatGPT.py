@@ -1,12 +1,13 @@
 import requests
 import json
 
+
 def get_response(prompt):
     url = 'https://api.openai.com/v1/engines/text-davinci-002/completions'
 
     headers = {
         'Content-Type': 'application/json',
-        'Authorization': f'Bearer YOUR_APIKEY',
+        'Authorization': f'Bearer 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',
     }
     data = {
         'prompt': prompt,
@@ -14,6 +15,3 @@ def get_response(prompt):
     }
     response = requests.post(url, headers=headers, json=data)
     return response.json()
-
-response = get_response("Is 'fuckyou' a destination or something about travel? please only answer with yes or no")
-print(response['choices'][0]['text'].strip())
