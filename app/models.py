@@ -6,6 +6,8 @@ class User(db.Model):
     email = db.Column(db.String(128), index=True, unique=True, nullable=False)
     password_hash = db.Column(db.String(128))
     userinfo = db.relationship('UserInfo', backref='user', lazy='dynamic')
+    posts = db.relationship('Posts', backref='user', lazy='dynamic')
+
     
     def __repr__(self):
         return '<User {}>'.format(self.email)
@@ -21,3 +23,11 @@ class UserInfo(db.Model):
     
     def __repr__(self):
         return '<UserInfo {}>'.format(self.first_name)
+    
+    
+class Posts(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_message = db.Column(db.String(300))
+    gpt_response = db.Column(db.String(300))
+    datetime = db.Column(db.DateTime, index=True, default=datetime.utcnow)
