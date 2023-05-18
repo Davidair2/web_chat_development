@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, url_for, request, make_response, redirect
+from flask import render_template, url_for, request, make_response, redirect, jsonify
 from python_chat_with_ChatGPT import get_response
 
 
@@ -25,6 +25,15 @@ def submit():
     user_input_content = request.form.get('user_input_content')
     print(user_input_content)
     GPT_response = get_response(user_input_content)
-    print(GPT_response)
-    return ('/')
+    try:
+        print(f"original response:{GPT_response}")
+        message = GPT_response['choices'][0]['text']
+        print(message)
+        return jsonify({'message': message})
+    except KeyError:
+        print("no response from ChatGPT")
+        return '/'
+
+
+
 

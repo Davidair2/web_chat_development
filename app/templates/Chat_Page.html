@@ -150,21 +150,28 @@
             $('#user_input_form').submit(function(event) {
                 event.preventDefault();
                 var userInput = $('#user_input').val();
-
+                var dialog = document.createElement("div");
                 $.ajax({
                     type: 'POST',
                     url: '/submit',
                     data: { user_input_content: userInput },
                     success: function(response) {
-                      console.log('Response:', response);
-                      // 处理响应的操作
+                        var GPT_msg = response.message;
+                        dialog.innerHTML += "<div class='col-12 mb-3'> <div class='d-flex'> <img src='static\bot_icon.gif' alt='Profile Picture' class='rounded-circle me-2' height='50px' width='70px' > <div class='message-content'> " +
+                        "<p>" + GPT_msg + "</p> " +
+                        "</div> </div> </div>"
+
+                        dialog_container.style.height = dialog_container.offsetHeight + "px";
+                        dialog_container.style.width = dialog_container.offsetWidth + "px";
+                        dialog_container.appendChild(dialog);
+                        console.log('Response:', response);
+                        dialog_container.scrollTop = dialog_container.scrollHeight;
                     },
                     error: function(error) {
-                      console.error('Error:', error);
-                      // 处理错误的操作
+                        console.error('Error:', error);
                     }
                 });
-                var dialog = document.createElement("div");
+
                 dialog.innerHTML += "<div class='col-12 mb-3'> <div class='d-flex flex-row-reverse'> <div class='message-content my-message'> " +
                     "<p>" + userInput + "</p> " +
                     "</div> <img src='https://via.placeholder.com/50' alt='Profile Picture' class='rounded-circle ms-2'> </div> </div>";

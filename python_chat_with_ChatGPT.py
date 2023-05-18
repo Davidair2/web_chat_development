@@ -7,7 +7,7 @@ def get_response(prompt):
 
     headers = {
         'Content-Type': 'application/json',
-        'Authorization': f'Bearer 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',
+        'Authorization': f'Bearer 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',
     }
     data = {
         'prompt': prompt,
