@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Travel Itinerary Chat</title>
+    <title>Travel Itinerary Bot</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
@@ -12,7 +12,9 @@
         font-size: 14px;
         color: #4D4D4D;
       }
-
+      #dialog_container{
+          overflow-y: auto;
+      }
       h1 {
         font-size: 80px;
         font-weight: bold;
@@ -52,32 +54,11 @@
       .card {
         background-color: #fff8ea;
       }
-
-      .container {
-        background-color: #FFCE88;
-        border-radius: 20px;
-        border-width: 12px;
-        border: #F9E4B7;
-      }
-
-      .btn-primary {
-        background-color: #FFCE88;
-        border-color: #FFCE88;
-        border-radius: 10px;
-        font-weight: bold;
-      }
-
-      .btn-primary:hover {
-        background-color: #F9E4B7;
-        border-color: #F9E4B7;
-        color: #4D4D4D;
-      }
-
     </style>
-    <a href="Landing_Page.html" class="cta-button btn btn-primary">Home</a>
   </head>
   <body>
-    <div class="py-3">
+
+    <div class="container py-3">
         <div class="row">
             <div class="col-12">
             <h1>Travel Itinerary Bot</h1>
@@ -89,7 +70,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-body">
-              <div class="row">
+              <div class="row"  id="dialog_container">
                 <div class="col-12 mb-3">
                   <div class="d-flex">
                     <img src="static\bot_icon.gif" alt="Profile Picture" class="rounded-circle me-2" height="50px" width="70px">
@@ -147,20 +128,54 @@
                   </div>
                 </div>
               </div>
-              <form>
+              <form id="user_input_form">
                 <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Type your message here...">
-                  <button class="input-group-text" type="submit">Send</button>
+                  <input type="text" class="form-control" placeholder="Type your message here..." name="user_input_content" id="user_input">
+                  <button class="input-group-text" id="submit_button" type="submit">Send</button>
                 </div>
               </form>
-            </div>
-            <div class="card-footer text-center">
-              <a href="Login_Page.html">Log out</a>
             </div>
           </div>
         </div>
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const dialog_container = document.getElementById("dialog_container");
+        const submit_Button = document.getElementById("submit_button");
+        const user_input = document.getElementById("user_input");
+
+        $(document).ready(function() {
+            $('#user_input_form').submit(function(event) {
+                event.preventDefault();
+                var userInput = $('#user_input').val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/submit',
+                    data: { user_input_content: userInput },
+                    success: function(response) {
+                      console.log('Response:', response);
+                      // 处理响应的操作
+                    },
+                    error: function(error) {
+                      console.error('Error:', error);
+                      // 处理错误的操作
+                    }
+                });
+                var dialog = document.createElement("div");
+                dialog.innerHTML += "<div class='col-12 mb-3'> <div class='d-flex flex-row-reverse'> <div class='message-content my-message'> " +
+                    "<p>" + userInput + "</p> " +
+                    "</div> <img src='https://via.placeholder.com/50' alt='Profile Picture' class='rounded-circle ms-2'> </div> </div>";
+
+                dialog_container.style.height = dialog_container.offsetHeight + "px";
+                dialog_container.style.width = dialog_container.offsetWidth + "px";
+                dialog_container.appendChild(dialog);
+                user_input.value = "";
+            });
+        });
+    </script>
+
   </body>
 </html>
