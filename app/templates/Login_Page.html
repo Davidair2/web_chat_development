@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <a href="Landing_Page.html" class="cta-button btn btn-primary">Home</a>
   </head>
   <body>
     <div class="hero">
@@ -28,22 +27,64 @@
                   <input type="password" id="password" class="form-control" placeholder="Enter your password...">
                 </div>
                 <div class="d-grid">
-                  <button type="submit" class="btn btn-primary">Sign In</button>
-                  <a href="Chat_Page.html">hack link to chat</a>
+                  <button type="submit" class="btn btn-primary" onclick="log_in()">Sign In</button>
+                  <a href="{{ url_for('index') }}">hack link to chat</a>
                 </div>
               </form>
             </div>
             <div class="card-footer text-center">
-              <a href="Register_Page.html">Dont have an account? Register Here</a>
+              <a href="{{ url_for('register_page') }}">Dont have an account? Register Here</a>
             </div>
             <div class="card-footer text-center">
-              <a href="Forgot_Password_Page.html">Forgot Password?</a>
+              <a href="{{ url_for('forget_passwd_page') }}">Forgot Password?</a>
             </div>
-          </div>
+          </div><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         </div>
       </div>
     </div>
   </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function log_in(){
+
+            var user_name = document.getElementById("username").value;
+            var passwd = document.getElementById("password").value;
+            if(user_name === ""){
+                alert("please enter your user name");
+                return false;
+            }
+            if(passwd === ""){
+                alert("please enter your password");
+                return false;
+            }
+            else{
+                $.ajax({
+                    type: 'POST',
+                    url: '/login',
+                    data: JSON.stringify({ username: user_name, passwd: passwd }),
+                    contentType: "application/json",
+                    success: function(response) {
+                        console.log("sent success");
+                        var login_state = response.login_state;
+                        if(login_state === "invalid_username"){
+                            alert("INVALID USERNAME");
+                        }
+                        if(login_state === "invalid_password"){
+                            alert("INVALID PASSWORD");
+                        }
+                        else{
+                            alert("SUCCESS!");
+                            window.location.href = "{{ url_for('index') }}";
+                        }
+                    },
+                    error: function(error) {
+                        console.error('Error:', error);
+                    }
+                });
+            }
+
+        }
+    </script>
   </body>
 </html>

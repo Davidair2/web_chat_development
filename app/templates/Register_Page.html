@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="style.css">
-        <a href="Landing_Page.html" class="cta-button btn btn-primary">Home</a>
     </head>
     <body>
+    <a href="{{ url_for('landing_page') }}" class="cta-button btn btn-primary">Home</a>
         <div class="hero">
         <div class="container py-3">
             <div class="row justify-content-center">
@@ -36,13 +36,13 @@
                                     <input type="password" id="confirm-password" class="form-control" placeholder="Confirm your password...">
                                 </div>
                                 <div class="d-grid">
-                                    <button type="submit" class="btn btn-primary">Register</button>
+                                    <button type="submit" class="btn btn-primary" onclick="submit_userInfo()">Register</button>
                                 </div>
                             </form>
                         </div>
                         <div class="card-footer text-center">
                             <span>Already have an account?</span>
-                            <a href="Login_Page.html">
+                            <a href="{{ url_for('login_page') }}">
                                 <span>Login here</span>
                             </a>
                         </div>
@@ -51,5 +51,31 @@
             </div>
         </div>
         </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function submit_userInfo(){
+            console.log("trigged")
+            var user_name = document.getElementById("username").value;
+            var email = document.getElementById("email").value;
+            var passwd = document.getElementById("password").value;
+            var confirm_passwd = document.getElementById("confirm-password").value;
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/register',
+                    data: JSON.stringify({ username: user_name, email: email, passwd: passwd }),
+                    contentType: "application/json",
+                    success: function(response) {
+                        console.log("sent success");
+                    },
+                    error: function(error) {
+                        console.error('Error:', error);
+                    }
+                });
+
+        }
+
+
+    </script>
     </body>
 </html>
