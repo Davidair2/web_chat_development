@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\mathe.MATLAPTOP\code\web_chat_development\env
+set VIRTUAL_ENV=G:\Other computers\My Computer (1)\uni\web-dev\web_chat_development\env
 
 if not defined PROMPT set PROMPT=$P$G
 

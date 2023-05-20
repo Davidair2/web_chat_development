@@ -1,22 +1,36 @@
-from app import app
-from flask import render_template, url_for, request, make_response, redirect, jsonify
+from app import app, db
+from flask import render_template, url_for, request, make_response, redirect, jsonify, flash
+from flask_login import current_user, login_user, logout_user, login_required
 from python_chat_with_ChatGPT import get_response
-
+from werkzeug.urls import url_parse
+from app.controllers import UserController
 
 @app.route('/')
 def index():
+    if current_user.is_authenticated:
+        return redirect(url_for('chat'))
+    return render_template('Landing_Page.html')
+
+@app.route('/chat/')
+def chat():
+    if not current_user.is_authenticated:
+        return redirect(url_for('login'))
     return render_template('Chat_Page.html')
 
-
-@app.route('/login/')
+@app.route('/login/', methods = ['GET', 'POST'])
 def login():
-    return render_template('Login_Page.html')
+    if current_user.is_authenticated:
+        return redirect(url_for('chat'))
+    return UserController.login()
 
 
-@app.route('/register/')
+@app.route('/register/', methods=['GET', 'POST'])
 def register():
-    return render_template('Register_page.html')
+    return UserController.register()
 
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+    return UserController.logout()
 
 @app.route("/submit", methods=["POST"])
 def submit():
