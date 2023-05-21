@@ -32,6 +32,10 @@ def register():
 def logout():
     return UserController.logout()
 
+@app.route('/forgot', methods=['GET', 'POST'])
+def forgot():
+    return render_template('Forgot_Password_Page.html')
+
 @app.route("/submit", methods=["POST"])
 def submit():
     """this is a method that collect the user input from the form when they pressed the 'send' button,

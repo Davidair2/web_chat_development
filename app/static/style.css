@@ -1,0 +1,136 @@
+/*for all pages*/
+body {
+    background-color: #E5D3B3;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #4D4D4D;
+}
+
+.hero {
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.form-control {
+    background-color: #F5F5F5;
+    border-radius: 4px;
+    border: none;
+}
+
+.card {
+    background-color: #F9E4B7;
+    box-shadow: 2px 2px 5px #C1B1A4;
+    border-radius: 10px;
+    border: none;
+}
+
+.card-header {
+    background-color: #FFCE88;
+    border-radius: 10px 10px 0 0;
+    border: none;
+}
+
+.card-footer {
+    background-color: #FFCE88;
+    border-radius: 0 0 10px 10px;
+    border: none;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #FFCE88;
+    border-color: #FFCE88;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: #F9E4B7;
+    border-color: #F9E4B7;
+    color: #4D4D4D;
+}
+
+/*chat page*/
+#dialog_container{
+    overflow-y: auto;
+}
+
+.chat_title {
+    font-size: 80px;
+    font-weight: bold;
+    text-align: center;
+    color: #4D4D4D;
+}
+
+.message-content {
+    background-color: #F9E4B7;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 2px 2px 5px #C1B1A4;
+}
+
+.message-content p {
+    margin: 0;
+}
+
+.my-message .message-content {
+    background-color: #FFCE88;
+}
+
+.input-group-text {
+    background-color: #F9E4B7;
+    color: #4D4D4D;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.chat_card {
+    background-color: #fff8ea;
+}
+
+/*landing page*/
+.hero-content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #FFFFFF;
+    border-radius: 10px;
+}
+
+.hero-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.cta-button.landing {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 18px;
+    background-color: #FFCE88;
+    color: #4D4D4D;
+    border: #F9E4B7;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #F9E4B7;
+    border: #FFCE88;
+}
+

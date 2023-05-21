@@ -5,68 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
-    <style>
-      body {
-        background-color: #E5D3B3;
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-        color: #4D4D4D;
-      }
-
-      .hero {
-        background-image: url('desert.jpg');
-        background-size: cover;
-        background-position: center;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-      }
-
-      .card {
-        background-color: #F9E4B7;
-        box-shadow: 2px 2px 5px #C1B1A4;
-        border-radius: 10px;
-        border: none;
-      }
-
-      .card-header {
-        background-color: #FFCE88;
-        border-radius: 10px 10px 0 0;
-        border: none;
-      }
-
-      .card-footer {
-        background-color: #FFCE88;
-        border-radius: 0 0 10px 10px;
-        border: none;
-      }
-
-      .form-control {
-        background-color: #F5F5F5;
-        border-radius: 4px;
-        border: none;
-      }
-
-      .form-label {
-        font-weight: bold;
-      }
-
-      .btn-primary {
-        background-color: #FFCE88;
-        border-color: #FFCE88;
-        border-radius: 10px;
-        font-weight: bold;
-      }
-
-      .btn-primary:hover {
-        background-color: #F9E4B7;
-        border-color: #F9E4B7;
-        color: #4D4D4D;
-      }
-    </style>
-    <a href="Landing_Page.html" class="cta-button btn btn-primary">Home</a>
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
   </head>
   <body>
     <div class="hero">
@@ -78,32 +17,34 @@
               <h3 class="mb-0">Login</h3>
             </div>
             <div class="card-body">
-              <form>
-                <div class="mb-3">
-                  <label for="username" class="form-label">Username</label>
-                  <input type="text" id="username" class="form-control" placeholder="Enter your username...">
+              <form action="{{ url_for('login') }}" method="POST">
+                {{ form.hidden_tag() }}
+                <div>
+                  {{ form.username.label }}<br>
+                  {{ form.username() }}
                 </div>
-                <div class="mb-3">
-                  <label for="password" class="form-label">Password</label>
-                  <input type="password" id="password" class="form-control" placeholder="Enter your password...">
+                
+                <div>
+                  {{ form.password.label }}<br>
+                  {{ form.password() }}
                 </div>
-                <div class="d-grid">
-                  <button type="submit" class="btn btn-primary">Sign In</button>
-                  <a href="Chat_Page.html">hack link to chat</a>
+                <div>
+                  <input type="submit" value="log in">
                 </div>
               </form>
             </div>
             <div class="card-footer text-center">
-              <a href="Register_Page.html">Dont have an account? Register Here</a>
+              <a href="{{ url_for('register') }}">Dont have an account? Register Here</a>
             </div>
             <div class="card-footer text-center">
-              <a href="Forgot_Password_Page.html">Forgot Password?</a>
+              <a href="{{ url_for('forgot') }}">Forgot Password?</a>
             </div>
-          </div>
+          </div><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         </div>
       </div>
     </div>
   </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </body>
 </html>

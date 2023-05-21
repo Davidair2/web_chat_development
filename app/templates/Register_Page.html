@@ -1,63 +1,88 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Registration Form</title>
-</head>
-<body>
-  <h1>Registration Form</h1>
-  
-  <form action="{{ url_for('register') }}" method="POST">
-    {{ form.hidden_tag() }}
-    
-    <div>
-      {{ form.username.label }}<br>
-      {{ form.username() }}
-    </div>
-    
-    <div>
-      {{ form.email.label }}<br>
-      {{ form.email() }}
-    </div>
-    
-    <div>
-      {{ form.first_name.label }}<br>
-      {{ form.first_name() }}
-    </div>
-    
-    <div>
-      {{ form.last_name.label }}<br>
-      {{ form.last_name() }}
-    </div>
-    
-    <div>
-      {{ form.dob.label }}<br>
-      {{ form.dob() }}
-    </div>
-    
-    <div>
-      {{ form.country.label }}<br>
-      {{ form.country() }}
-    </div>
-    
-    <div>
-      {{ form.city.label }}<br>
-      {{ form.city() }}
-    </div>
-    
-    <div>
-      {{ form.password.label }}<br>
-      {{ form.password() }}
-    </div>
-    
-    <div>
-      {{ form.password2.label }}<br>
-      {{ form.password2() }}
-    </div>
-    
-    <div>
-      <input type="submit" value="Register">
-    </div>
-  </form>
-</body>
+    <head>
+        <title>Registration</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+    <a href="{{ url_for('index') }}" class="cta-button btn btn-primary">Home</a>
+        <div class="hero">
+        <div class="container py-3">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <h3 class="mb-0">Register</h3>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{ url_for('register') }}" method="POST">
+                                {{ form.hidden_tag() }}
+                                
+                                <div>
+                                  {{ form.username.label }}<br>
+                                  {{ form.username() }}
+                                </div>
+                                
+                                <div>
+                                  {{ form.email.label }}<br>
+                                  {{ form.email() }}
+                                </div>
+                                
+                                <div>
+                                  {{ form.first_name.label }}<br>
+                                  {{ form.first_name() }}
+                                </div>
+                                
+                                <div>
+                                  {{ form.last_name.label }}<br>
+                                  {{ form.last_name() }}
+                                </div>
+                                
+                                <div>
+                                  {{ form.dob.label }}<br>
+                                  {{ form.dob() }}
+                                </div>
+                                
+                                <div>
+                                  {{ form.country.label }}<br>
+                                  {{ form.country() }}
+                                </div>
+                                
+                                <div>
+                                  {{ form.city.label }}<br>
+                                  {{ form.city() }}
+                                </div>
+                                
+                                <div>
+                                  {{ form.password.label }}<br>
+                                  {{ form.password() }}
+                                </div>
+                                
+                                <div>
+                                  {{ form.password2.label }}<br>
+                                  {{ form.password2() }}
+                                </div>
+                                
+                                <div>
+                                  <input type="submit" value="Register">
+                                </div>
+                              </form>
+                            </form>
+                        </div>
+                        <div class="card-footer text-center">
+                            <span>Already have an account?</span>
+                            <a href="{{ url_for('login') }}">
+                                <span>Login here</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </body>
 </html>
-
