@@ -15,3 +15,14 @@ def get_response(prompt):
     }
     response = requests.post(url, headers=headers, json=data)
     return response.json()
+
+
+def check_response(prompt, response):
+    messages = prompt + " " + response
+    messages += " Do the previous sentences relate to travel, food or accommodation? Only answer yes or no"
+    GPT_response = get_response(messages)
+    checked_msg = GPT_response['choices'][0]['text']
+    if checked_msg[-2:] == 'es':
+        return True
+    elif checked_msg[-1:] == 'o':
+        return False
