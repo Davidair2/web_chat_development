@@ -6,6 +6,12 @@ body {
     color: #4D4D4D;
 }
 
+.errors {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+}
+
 .hero {
     background-size: cover;
     background-position: center;
