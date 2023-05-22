@@ -1,46 +1,40 @@
-from app import app, sql_conn, sql_cursor
-from flask import render_template, url_for, request, make_response, redirect, jsonify
+from app import app, db
+from flask import render_template, url_for, request, make_response, redirect, jsonify, flash
+from flask_login import current_user, login_user, logout_user, login_required
 from python_chat_with_ChatGPT import get_response
-
+from werkzeug.urls import url_parse
+from app.controllers import UserController
 
 @app.route('/')
 def index():
+    if current_user.is_authenticated:
+        return redirect(url_for('chat'))
+    return render_template('Landing_Page.html')
+
+@app.route('/chat/')
+def chat():
+    if not current_user.is_authenticated:
+        return redirect(url_for('login'))
     return render_template('Chat_Page.html')
 
-
-@app.route('/login_page/')
-def login_page():
-    return render_template('Login_Page.html')
-
-
-@app.route('/login', methods=["POST"])
+@app.route('/login/', methods = ['GET', 'POST'])
 def login():
-    print("hello")
-    login_info = request.get_json()
-    login_userName = login_info["username"]
-    login_passwd = login_info["passwd"]
-    sql_conn.commit()
-    sql_cursor.execute(f"SELECT username, password_hash FROM user WHERE username = '{login_userName}';")
-    db_user_info = sql_cursor.fetchall()
-    print(db_user_info)
-    if len(db_user_info[0]) == 0:
-        return jsonify({"login_state": "invalid_username"})
-    else:
-        if db_user_info[0][1] != login_passwd:
-            return jsonify({"login_state": "invalid_password"})
-        else:
-            return jsonify({"login_state": "success"})
+    if current_user.is_authenticated:
+        return redirect(url_for('chat'))
+    return UserController.login()
 
 
-@app.route('/forget password_page/')
-def forget_passwd_page():
+@app.route('/register/', methods=['GET', 'POST'])
+def register():
+    return UserController.register()
+
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+    return UserController.logout()
+
+@app.route('/forgot', methods=['GET', 'POST'])
+def forgot():
     return render_template('Forgot_Password_Page.html')
-
-
-@app.route('/register_page/')
-def register_page():
-    return render_template('Register_page.html')
-
 
 @app.route("/landing_page/")
 def landing_page():

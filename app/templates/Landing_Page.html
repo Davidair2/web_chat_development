@@ -3,7 +3,7 @@
   <head>
     <title>Travel Itinerary Bot</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
   </head>
   <body>
     <div class="hero">
@@ -13,8 +13,8 @@
             <div class="hero-content">
               <h1 class="hero-title">Travel Itinerary Bot</h1>
               <p class="hero-description">Plan you holiday in seconds!</p>
-              <a href="{{ url_for('login_page') }}" class="cta-button btn btn-primary">Login</a>
-              <a href="{{ url_for('register_page') }}" class="cta-button btn btn-primary">Register</a>
+              <a href="{{ url_for('login') }}" class="cta-button btn btn-primary">Login</a>
+              <a href="{{ url_for('register') }}" class="cta-button btn btn-primary">Register</a>
 
             </div>
           </div>
@@ -23,4 +23,5 @@
     </div>
   </body>
 </html>
+
 
