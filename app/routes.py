@@ -69,8 +69,14 @@ def submit():
     try:
         print(f"original response:{GPT_response}")
         msg = GPT_response['choices'][0]['text']
-        print(msg)
-        return jsonify({'message': msg})
+        check = check_response(user_input_content, msg)
+        if check == True:
+            print(msg)
+            return jsonify({'message': msg})
+        else:
+            msg = "This question/answer could not be understood in the context of travel, food, accommodation etc."
+            print(msg)
+            return jsonify({'message': msg})
     except KeyError:
         print("no response from ChatGPT")
         return '/'
