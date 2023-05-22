@@ -17,8 +17,6 @@ class User(UserMixin, db.Model):
     first_name = db.Column(db.String(64))
     last_name = db.Column(db.String(64))
     dob = db.Column(db.DateTime, index=True)
-    country = db.Column(db.String(64))
-    city = db.Column(db.String(64))
     posts = db.relationship('Posts', backref='user', lazy='dynamic')
     
     def set_password(self, password):

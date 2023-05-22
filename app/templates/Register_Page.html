@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="../static/style.css">
     </head>
     <body>
     <a href="{{ url_for('index') }}" class="cta-button btn btn-primary">Home</a>
@@ -21,55 +21,44 @@
                             <form action="{{ url_for('register') }}" method="POST">
                                 {{ form.hidden_tag() }}
                                 
-                                <div>
-                                  {{ form.username.label }}<br>
-                                  {{ form.username() }}
+                                <div class="mb-3">
+                                  {{ form.username.label(class_="form-label") }}<br>
+                                  {{ form.username(class="form-control", placeholder="Enter your username...") }}
                                 </div>
                                 
-                                <div>
-                                  {{ form.email.label }}<br>
-                                  {{ form.email() }}
+                                <div class="mb-3">
+                                  {{ form.email.label(class_="form-label") }}<br>
+                                  {{ form.email(class="form-control", placeholder="Enter your email...") }}
                                 </div>
                                 
-                                <div>
-                                  {{ form.first_name.label }}<br>
-                                  {{ form.first_name() }}
+                                <div class="mb-3">
+                                  {{ form.first_name.label(class="form-label") }}<br>
+                                  {{ form.first_name(class="form-control", placeholder="Enter your first name...") }}
                                 </div>
                                 
-                                <div>
-                                  {{ form.last_name.label }}<br>
-                                  {{ form.last_name() }}
+                                <div class="mb-3">
+                                  {{ form.last_name.label(class_="form-label") }}<br>
+                                  {{ form.last_name(class="form-control", placeholder="Enter your last name...") }}
                                 </div>
                                 
-                                <div>
-                                  {{ form.dob.label }}<br>
-                                  {{ form.dob() }}
+                                <div class="mb-3">
+                                  {{ form.dob.label(class_="form-label") }}<br>
+                                  {{ form.dob(class="form-control") }}
                                 </div>
                                 
-                                <div>
-                                  {{ form.country.label }}<br>
-                                  {{ form.country() }}
+                                <div class="mb-3">
+                                  {{ form.password.label(class_="form-label") }}<br>
+                                  {{ form.password(class="form-control", placeholder="Enter your password...") }}
                                 </div>
                                 
-                                <div>
-                                  {{ form.city.label }}<br>
-                                  {{ form.city() }}
+                                <div class="mb-3">
+                                  {{ form.password2.label(class_="form-label") }}<br>
+                                  {{ form.password2(class="form-control", placeholder="Confirm your password...") }}
                                 </div>
                                 
-                                <div>
-                                  {{ form.password.label }}<br>
-                                  {{ form.password() }}
+                                <div class="d-grid">
+                                  <input type="submit" value="Register" class="btn btn-primary">
                                 </div>
-                                
-                                <div>
-                                  {{ form.password2.label }}<br>
-                                  {{ form.password2() }}
-                                </div>
-                                
-                                <div>
-                                  <input type="submit" value="Register">
-                                </div>
-                              </form>
                             </form>
                         </div>
                         <div class="card-footer text-center">

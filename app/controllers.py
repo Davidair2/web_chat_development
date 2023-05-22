@@ -32,7 +32,7 @@ class UserController():
             if current_user.is_authenticated:
                 return redirect(url_for('chat'))
             else:
-                user = User(username=form.username.data, email=form.email.data, first_name=form.first_name.data, last_name=form.last_name.data, dob=form.dob.data, country=form.country.data, city=form.city.data)
+                user = User(username=form.username.data, email=form.email.data, first_name=form.first_name.data, last_name=form.last_name.data, dob=form.dob.data)
                 user.set_password(form.password.data)
                 db.session.add(user)
                 db.session.commit()
