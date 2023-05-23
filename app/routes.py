@@ -74,7 +74,7 @@ def submit():
             print(msg)
             return jsonify({'message': msg})
         else:
-            msg = "This question/answer could not be understood in the context of travel, food, accommodation etc."
+            msg = "This question/answer could not be understood in the context of travel, food, accommodation etc.\nPlease rephrase the question and try again."
             print(msg)
             return jsonify({'message': msg})
     except KeyError:
